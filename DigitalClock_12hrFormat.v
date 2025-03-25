@@ -1,21 +1,21 @@
 `timescale 1ns / 1ps
 
 module DigitalClock_12HrFormat(
-    input clk,  // system clock 100 MHz
-    input center,  // center button for clock mode - selecting and deselecting clock mode
-    input right,  // to toggle between minutes and hours
-    input left,  // to toggle between minutes and hours
-    input up,  // increment hrs or min
-    input down,  // decrement hrs or min
+    input clk,  
+    input center, 
+    input right, 
+    input left,  
+    input up,  
+    input down,  
     output [6:0] seg,  // 7 segments of the display
     output [3:0] an,  // to enable 4 seven segment displays
-    output AMPM_indicator_led,  // light on indicates PM, light off indicates AM
+    output AMPM_indicator_led,  
     output clock_mode_indicator_led  // indicates clock in clock mode when light is on
 );
 
-// setting ports for slow clock (1 Hz) for clock
-reg [31:0] counter = 0; // counter to count
-parameter max_count = 100_000_000; // 100 MHz / 1 Hz = 100M (1 second resolution)
+
+reg [31:0] counter = 0; 
+parameter max_count = 100_000_000; 
 
 // setting up ports for hours and minutes, clock display
 reg [5:0] hrs, min, sec = 0; // hrs = 1 - 12, min = 0 - 59, sec = 0 - 59
